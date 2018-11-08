@@ -39,4 +39,4 @@ This package is released under [Unlicense](http://unlicense.org) meaning you can
 
 ## Contribute
 
-The goal is to keep this as simple as possible, so no features should be added. Having said that, if you feel that something is missing for the basic purpose of TypeScript experimentation, feel free to submit a pull request. 
+The goal is to keep this as simple as possible, so no features should be added. Having said that, if you feel that something is missing for the basic purpose of TypeScript experimentation, feel free to submit a pull request. # tscart
