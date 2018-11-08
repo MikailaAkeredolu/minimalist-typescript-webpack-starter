@@ -1,12 +1,10 @@
-//document.getElementsByTagName('h1')[0].innerHTML = "Hello, TypeScript+webpack World!";
 import { Item } from './item';
 //var shoppingCart = (function () {
     let cart: any[] = [];
 
     function addItemToCart(id: number, name:string, price:number, count:number){
-        //loop through the array to check if name of item already exist
         for(let x in cart){
-            if(cart[x].name === name){ //if name exist
+            if(cart[x].name === name){ 
                     cart[x].count += count; //increase count by count given
                     return;
             }
@@ -16,7 +14,8 @@ import { Item } from './item';
         cart.push(item);
         saveCart();
         displayCart(id,name,price,count);
-        console.log(cart);
+        displayTotal();
+        displayQty();
     }
     
     function saveCart(): void{
@@ -26,7 +25,7 @@ import { Item } from './item';
     function removeItemFromCart(name: string){
         for(let x = 0; x < cart.length; x++){
             if(cart[x].name === name){
-                cart[x].count --;  //decrease item number by 1
+                cart[x].count --;  //decrease item count by 1
     
                 if(cart[x].count === 0){ //if item count is 0
                     //cart.splice(x,1); //remove the item object
@@ -168,10 +167,9 @@ item9.addEventListener('click',function(){
 
 
 //totalCart
-var total:HTMLElement = document.getElementById('total');
+var total:HTMLElement = document.getElementById('sp');
 total.addEventListener('click',function(){
     totalCart();
-    console.log(totalCart());
 });
 
 //removeItem
@@ -198,14 +196,50 @@ lCart.addEventListener('click',function(){
     console.log(listCart());
 });
 
+
+//Display Methods
+
 function displayCart(id:number, name:string, price:number, count:number){
-        var output = " ItemID: " + id +" "+ name + ": $" + Number(price) + " total cost $ " + totalCart();;
+        var output = " ItemID: " + id +" "+ name + ": $" + Number(price); //+ " total cost $ " + totalCart();
         var ul = document.getElementById("friendsList");
         var li = document.createElement('li');
         li.appendChild(document.createTextNode(output));   
         ul.appendChild(li);
-        li.addEventListener('click',function(){
-        addItemToCart(id,name,price, count);
-    });
 }
+
+
+//totalCost
+function displayTotal(){
+    var output = " total cost $ " + totalCart();
+    var span = document.getElementById('sp');
+    span.innerHTML = output;
+    }
+
+//QTY
+//totalCost
+function displayQty(){
+var output = " QTY: " + countCart();
+var span = document.getElementById('qt');
+span.innerHTML = output;
+}
+
+
+
+
+
+
+
+
+/*
+var newLi = document.createElement('li');
+var newA = document.createElement('a');
+newA.setAttribute("href","#");
+var menu = document.getElementById("main-nav").getElementsByTagName("ul")[0];
+menu.appendChild(newLi);
+newLi.appendChild(newA);
+newA.innerHTML = "total cost : " + totalCart();
+*/
+
+
+
 

@@ -1,67 +1,73 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Hello, World!</title>
-        <style type="text/css">
-            body {
-                background-color: #CDD6D5;
-            }
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello, World!</title>
+    <style type="text/css">
+        body {
+            background-color: #CDD6D5;
+        }
 
-            li {
-                background-color: #415B76;
-                margin: 5px;
-                padding: 3px;
-                list-style-type: none;
-                color: #EEF4F2;
-                font-family: sans-serif;
-            }
+        li,span {
+            background-color: #415B76;
+            margin: 5px;
+            padding: 3px;
+            list-style-type: none;
+            color: #EEF4F2;
+            font-family: sans-serif;
+        }
 
-            a{
-                color: white;
-            }
+        a{
+            color: white;
+        }
 
-            #prodContainer{
-                width: 350px;
-            }
-        </style>
-        </head>
-        <body>
-        <div id="prodContainer"></div>
-        <div>
-            <ul>
-                <li><a id="item1" href="#" data-name="Adidas NMD" data-price="130.00">Adidas NMD: $130.00</a></li>
-                <li><a id="item2" href="#" data-name="Adidas Yeezy Boost 350" data-price="300.00">Adidas Yeezy Boost 350: $300.00</a></li>
-                <li><a id="item3" href="#" data-name="Vans Old Skool" data-price="60.00">Vans Old Skool: $60.00</a></li>
-                <li><a id="item4" href="#" data-name="Adidas Superstar" data-price="80.00">Adidas Superstar: $80.00</a></li> 
-                <li><a id="item5" href="#" data-name="Converse Chuck Taylor All Star" data-price="50.00">Converse Chuck Taylor All Star: $50.00</a></li>
-                <li><a id="item6" href="#" data-name="Adidas Stan Smith" data-price="60.00">Adidas Stan Smith: $60.00</a></li>
-                <li><a id="item7" href="#" data-name="Nike Air Max 90" data-price="110.00">Nike Air Max 90: $110.00</a></li>
-                <li><a id="item8" href="#" data-name="Vans Authentic" data-price="50.00">Vans Authentic: $50.00</a></li> 
-                <li><a id="item9" href="#" data-name="Adidas Ultra Boost" data-price="180.00">Adidas Ultra Boost: $180.00</a></li>
-            
-                <br>
-                <!--cart controls-->
-                <h2>Cart Controls</h2>
-                <li id="removeItem">removeOneQuantity</li>
-                <li id="total">total</li>
-                <li id="countCart">countCart</li> <!--Number of items in cart via count property -->
-                <li id="listCart">listCart</li>
-                <li id="removeAllItem">removeALLQuantity</li>
-            </ul>
-            </b>
-            <h2>This is the cart</h2>
-            <ul id="friendsList"></ul>
-            
-        </div>
+        #prodContainer{
+            width: 350px;
+        }
+    </style>
+    </head>
+    <body>
+    <div id="prodContainer"></div>
+    <div>
+        <h2>Click item name to add item to cart </h2>
+        <ul>
+            <li><a id="item1" href="#" data-name="Adidas NMD" data-price="130.00">Adidas NMD: $130.00</a></li>
+            <li><a id="item2" href="#" data-name="Adidas Yeezy Boost 350" data-price="300.00">Adidas Yeezy Boost 350: $300.00</a></li>
+            <li><a id="item3" href="#" data-name="Vans Old Skool" data-price="60.00">Vans Old Skool: $60.00</a></li>
+            <li><a id="item4" href="#" data-name="Adidas Superstar" data-price="80.00">Adidas Superstar: $80.00</a></li> 
+            <li><a id="item5" href="#" data-name="Converse Chuck Taylor All Star" data-price="50.00">Converse Chuck Taylor All Star: $50.00</a></li>
+            <li><a id="item6" href="#" data-name="Adidas Stan Smith" data-price="60.00">Adidas Stan Smith: $60.00</a></li>
+            <li><a id="item7" href="#" data-name="Nike Air Max 90" data-price="110.00">Nike Air Max 90: $110.00</a></li>
+            <li><a id="item8" href="#" data-name="Vans Authentic" data-price="50.00">Vans Authentic: $50.00</a></li> 
+            <li><a id="item9" href="#" data-name="Adidas Ultra Boost" data-price="180.00">Adidas Ultra Boost: $180.00</a></li>
+        
+            <br>
+           
+        </ul>
+        </b>
+        <!--CART-->
+        <h2>Items in the cart</h2>
+        <ul id="friendsList"></ul>
+        <span id="sp">Total: $</span>
+        <span id="qt">QTY: </span>
+
+
+        <br>
+         <!--Cart controls-->
+        <h2>Cart Controls</h2>
+        <li id="removeItem">removeOneQuantity</li>
       
-       
+        <li id="countCart">countCart</li> <!--Number of items in cart via count property -->
+        <li id="listCart">listCart</li>
+        <li id="removeAllItem">removeALLQuantity</li>
+
+       </span>
+    </div>
 
 
 
-        <!-- <script type="text/javascript" src="src/index.js"></script> -->
-    </body>
-    </html>
-
+    <!-- <script type="text/javascript" src="src/index.js"></script> -->
+</body>
+</html>
