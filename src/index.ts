@@ -122,6 +122,12 @@ item1.addEventListener('click',function(){
      addItemToCart(1,"Adidas NMD",130.00, 1);
 });
 
+//removeItem
+var itemBtn:HTMLElement = document.querySelector('.remove');
+itemBtn.addEventListener('click',function(){
+removeItemFromCart("Adidas NMD");
+});
+
 var item2:HTMLElement = document.getElementById('item2');
 item2.addEventListener('click',function(){
   addItemToCart(2,"Adidas Yeezy Boost 350",300.00, 1);
@@ -172,18 +178,18 @@ total.addEventListener('click',function(){
     totalCart();
 });
 
-//removeItem
-var removeItem:HTMLElement = document.getElementById('removeItem');
-removeItem.addEventListener('click',function(){
-removeItemFromCart("Adidas NMD");
-});
+// //removeItem
+// var btn:HTMLElement = document.querySelector('.remove');
+// btn.addEventListener('click',function(){
+// removeItemFromCart("Adidas NMD");
+// });
 
 //Remove ALl items
-var removeItem:HTMLElement = document.getElementById('removeItem');
-removeItem.addEventListener('click',function(){
-removeItemFromCartAll("Adidas NMD");
-});
-
+// var removeItem:HTMLElement = document.getElementById('.remove');
+// removeItem.addEventListener('click',function(){
+// removeItemFromCartAll("Adidas NMD");
+// });
+/*
 //countCart
 var cCart:HTMLElement = document.getElementById('countCart');
 cCart.addEventListener('click',function(){
@@ -195,7 +201,7 @@ var lCart:HTMLElement = document.getElementById('listCart');
 lCart.addEventListener('click',function(){
     console.log(listCart());
 });
-
+*/
 
 //Display Methods
 
