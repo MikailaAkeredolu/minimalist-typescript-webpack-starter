@@ -13,9 +13,10 @@ import { Item } from './item';
         var item = new Item(id, name, price, count);
         cart.push(item);
         saveCart();
-        displayCart(id,name,price,count);
+        displayInCart(id, name, price, count);
         displayTotal();
-        displayQty();
+        displayQty(); 
+       // dis(); 
     }
     
     function saveCart(): void{
@@ -34,6 +35,7 @@ import { Item } from './item';
             break;
             }
         }
+        // removeItemBUTTON(name);
         saveCart();
         console.log(cart.length);
         console.log(cart);
@@ -56,16 +58,6 @@ import { Item } from './item';
         saveCart();
         console.log(cart);
     }
-    
-    function countCart():number{
-        let totalCount: number = 0;
-        for(let x in cart){
-            totalCount += cart[x].count;  //add count of an item to toal count
-        }
-
-        return totalCount;
-    
-    }
 
     function setCountForCart (name: string, count: number) {
         for (var i in cart) {
@@ -77,11 +69,24 @@ import { Item } from './item';
         saveCart();
     };
     
+    
+    function countCart():number{
+        let totalCount: number = 0;
+        for(let x in cart){
+            totalCount += cart[x].count;  //add count of an item to toal count
+        
+        }
+
+        return totalCount;
+    
+    }
+
     //totalCart() -> //returns the total cost
     function totalCart():number{
         var totalPrice: number = 0.0;
         for(let x in cart){
-            totalPrice += cart[x].price;
+            totalPrice += (cart[x].price * cart[x].count);
+            //totalPrice += cart[x].price;
         }
         return totalPrice;
        
@@ -111,107 +116,80 @@ import { Item } from './item';
     }
     
     //loadCart() //Looks for cart and loads it from local storage//take string and make objects
-    function loadCart(){
-        cart = JSON.parse(localStorage.getItem("shoppingCart")!);
-        console.log(cart);
-    }
+    // function loadCart(){
+    //     cart = JSON.parse(localStorage.getItem("shoppingCart")!);
+    //     console.log(cart);
+    // }
 
 //ProductList
 var item1:HTMLElement = document.getElementById('item1');
 item1.addEventListener('click',function(){
      addItemToCart(1,"Adidas NMD",130.00, 1);
-});
-
-//removeItem
-var itemBtn:HTMLElement = document.querySelector('.remove');
-itemBtn.addEventListener('click',function(){
-removeItemFromCart("Adidas NMD");
+     displayQty();
+     displayTotal();
 });
 
 var item2:HTMLElement = document.getElementById('item2');
 item2.addEventListener('click',function(){
   addItemToCart(2,"Adidas Yeezy Boost 350",300.00, 1);
+  displayQty();
+  displayTotal();
 });
 
 
 var item3:HTMLElement = document.getElementById('item3');
 item3.addEventListener('click',function(){
     addItemToCart(3,"Vans Old Skool",60.00, 1);
+    displayQty();
+    displayTotal();
 });
 
 var item4:HTMLElement = document.getElementById('item4');
 item4.addEventListener('click',function(){
     addItemToCart(4,"Adidas Superstar",80.00, 1);
+    displayQty();
+    displayTotal();
 });
 
 
 var item5:HTMLElement = document.getElementById('item5');
 item5.addEventListener('click',function(){
      addItemToCart(5,"Converse Chuck Taylor All Star",50.00, 1);
+     displayQty();
+     displayTotal();
 });
 
 var item6:HTMLElement = document.getElementById('item6');
 item6.addEventListener('click',function(){
   addItemToCart(6,"Adidas Stan Smith",60.00, 1);
+  displayQty();
+  displayTotal();
 });
 
 
 var item7:HTMLElement = document.getElementById('item7');
 item7.addEventListener('click',function(){
     addItemToCart(7,"Nike Air Max 90",110.00, 1);
+    displayQty();
+    displayTotal();
 });
 
 var item8:HTMLElement = document.getElementById('item8');
 item8.addEventListener('click',function(){
     addItemToCart(8,"Vans Authentic",50.00, 1);
+    displayQty();
+    displayTotal();
 });
 
 var item9:HTMLElement = document.getElementById('item9');
 item9.addEventListener('click',function(){
     addItemToCart(9,"Adidas Ultra Boost",180.00, 1);
+    displayQty();
+    displayTotal();
 });
 
-
-//totalCart
-var total:HTMLElement = document.getElementById('sp');
-total.addEventListener('click',function(){
-    totalCart();
-});
-
-// //removeItem
-// var btn:HTMLElement = document.querySelector('.remove');
-// btn.addEventListener('click',function(){
-// removeItemFromCart("Adidas NMD");
-// });
-
-//Remove ALl items
-// var removeItem:HTMLElement = document.getElementById('.remove');
-// removeItem.addEventListener('click',function(){
-// removeItemFromCartAll("Adidas NMD");
-// });
-/*
-//countCart
-var cCart:HTMLElement = document.getElementById('countCart');
-cCart.addEventListener('click',function(){
-console.log(countCart());
-});
-
-//listCart
-var lCart:HTMLElement = document.getElementById('listCart');
-lCart.addEventListener('click',function(){
-    console.log(listCart());
-});
-*/
 
 //Display Methods
-
-function displayCart(id:number, name:string, price:number, count:number){
-        var output = " ItemID: " + id +" "+ name + ": $" + Number(price); //+ " total cost $ " + totalCart();
-        var ul = document.getElementById("friendsList");
-        var li = document.createElement('li');
-        li.appendChild(document.createTextNode(output));   
-        ul.appendChild(li);
-}
 
 
 //totalCost
@@ -221,31 +199,50 @@ function displayTotal(){
     span.innerHTML = output;
     }
 
-//QTY
-//totalCost
+//QTY - count
 function displayQty(){
 var output = " QTY: " + countCart();
 var span = document.getElementById('qt');
 span.innerHTML = output;
 }
 
+//display item in cart
+function displayInCart(id:number, name:string, price:number, count:number){
+    var output = " ItemID: " + id +" "+ name + ": $" + Number(price); //+ " total cost $ " + totalCart();
+    var ul = document.getElementById("cartList");
+    var li = document.createElement('li');
+    li.appendChild(document.createTextNode(output)); 
+    ul.appendChild(li);
+}
+
+// var inventory = [item1, item2, item3, item4, item5, item6, item7, item8, item9];
+// function dis(){
+//     const addButtons = document.getElementsByClassName('.addButton');
+//     var output = "1";
+//     var ul = document.getElementById("items");
+//     var li = document.createElement('li');
+//     for(var x = 0; x < addButtons.length; x++){
+//          addButtons[x].addEventListener('click',function(){ 
+//              console.log(x)
+             
+//            });
+        
+//     }
+
+//     li.appendChild(document.createTextNode(output)); 
+//         ul.appendChild(li);
+// }
 
 
+// var item1:HTMLElement = document.getElementById('item1');
+// item1.addEventListener('click',function(){
+//      addItemToCart(1,"Adidas NMD",130.00, 1);
+// });
 
 
+// var items:HTMLElement = document.getElementById('items');
 
-
-
-/*
-var newLi = document.createElement('li');
-var newA = document.createElement('a');
-newA.setAttribute("href","#");
-var menu = document.getElementById("main-nav").getElementsByTagName("ul")[0];
-menu.appendChild(newLi);
-newLi.appendChild(newA);
-newA.innerHTML = "total cost : " + totalCart();
-*/
-
-
-
+// items.addEventListener('click',function(e){
+//      displayInCart();
+// });
 
