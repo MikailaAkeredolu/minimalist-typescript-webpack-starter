@@ -16,7 +16,6 @@
             displayInCart(id, name, price, count);
             displayTotal();
             displayQty(); 
-        // dis(); 
         }
         
         function saveCart(): void{
@@ -26,16 +25,14 @@
         function removeItemFromCart(name: string){
             for(let x = 0; x < cart.length; x++){
                 if(cart[x].name === name){
-                    cart[x].count --;  //decrease item count by 1
+                    cart[x].count --; 
         
-                    if(cart[x].count === 0){ //if item count is 0
-                        //cart.splice(x,1); //remove the item object
+                    if(cart[x].count === 0){ 
                         removeItemFromCartAll(name);
                     }
                 break;
                 }
             }
-            // removeItemBUTTON(name);
             saveCart();
             console.log(cart.length);
             console.log(cart);
@@ -45,7 +42,7 @@
         function removeItemFromCartAll(name: string){
             for(let x = 0; x < cart.length; x++){
             if(cart[x].name === name){
-                cart.splice(x,1); //remove the item object
+                cart.splice(x,1); 
                 break;
             }
         }
@@ -73,7 +70,7 @@
         function countCart():number{
             let totalCount: number = 0;
             for(let x in cart){
-                totalCount += cart[x].count;  //add count of an item to toal count
+                totalCount += cart[x].count; 
             
             }
 
@@ -214,5 +211,35 @@
         li.appendChild(document.createTextNode(output)); 
         ul.appendChild(li);
     }
+
+
+
+    
+    //Eperiment....
+
+    // function printThis(){
+    //     var output = " ItemID: ";
+    //     // for(var x = 0; x < cart.length; x++){
+    //     //     output += cart[x].id + " " + cart[x].name;
+          
+    //     // }
+    //     var ul = document.getElementById("cartList2");
+    //     var li = document.createElement('li');
+    //     li.appendChild(document.createTextNode(output)); 
+    //         ul.appendChild(li);
+    // }
+
+    // var addB = document.getElementsByClassName('addButton');
+    // for(var x = 0; x < addB.length; x++){
+    
+    //     addB[x].addEventListener('click',printThis);
+    // };
+
+    // addB.addEventListener('click',function(){
+    //     addItemToCart(1,"test",130.00, 1);
+    //     displayQty();
+    //     displayTotal();
+    // });
+   
 
 
