@@ -14,7 +14,7 @@ import $ from 'jquery';
         var item = new Item(id, name, price, count);
         cart.push(item);
         saveCart();
-        displayItemsInCart(id, name, price, count);
+        //displayItemsInCart(id, name, price, count);
         displayTotal();
         displayQty(); 
     }
@@ -118,14 +118,14 @@ import $ from 'jquery';
 
     }
 
-    function displayItemsInCart(id:number, name:string, price:number, count:number){
-        var output = "ItemID: " + id +" "+ name + ": $" + Number(price);
-        var ul = document.getElementById("cartList");
-        var li = document.createElement('li');
-        li.appendChild(document.createTextNode(output)); 
-        ul.appendChild(li);
-        console.log('created li');
-    }
+    //REPLACED WITH JQUERY
+    // function displayItemsInCart(id:number, name:string, price:number, count:number){
+    //     var output = name + "/  Price $" + Number(price);
+    //     var ul = document.getElementById("cartList");
+    //     var li = document.createElement('li');
+    //     li.appendChild(document.createTextNode(output)); 
+    //     ul.appendChild(li);
+    // }
 
     function displayTotal(){
         var output = " Total Cost of Items in Cart: $ " + totalCart();
@@ -144,29 +144,36 @@ import $ from 'jquery';
     //Jquery
     $("#clear-cart").click(function(event){
         clearCart();
-        //var ul = document.getElementById("cartList");
-        
-    
+        var content = document.getElementById('cartList');
+        content.textContent = '';
+        loadCart();
+        //listCart();
     });
 
 
-    // $(".add-to-cart").click(function(event){
-    //     event.preventDefault();
-    //     var name = $(this).attr("data-name");
-    //     var price = Number($(this).attr("data-price"));
-    //     addItemToCart(0, name, price, 0);
-    // })
+    $(".add-to-cart").click(function(event){
+        event.preventDefault();
+        var id = Number($(this).attr("data-id"));
+        var name = $(this).attr("data-name");
+        var price = Number($(this).attr("data-price"));
+        // displayItemsInCart(id, name, price, 0);
+        var output = name + " " + Number(price);
+        var ul = document.getElementById("cartList");
+        var li = document.createElement('li');
+        li.appendChild(document.createTextNode(output)); 
+        ul.appendChild(li);
+        addItemToCart(id, name, price, 0);
+        displayTotal();
+        displayQty();
 
-
-
-
+    })
 
     
-    //loadCart() //Looks for cart and loads it from local storage//take string and make objects
-    // function loadCart(){
-    //     cart = JSON.parse(localStorage.getItem("shoppingCart")!);
-    //     console.log(cart);
-    // }
+    loadCart() //Looks for cart and loads it from local storage//take string and make objects
+    function loadCart(){
+        cart = JSON.parse(localStorage.getItem("shoppingCart")!);
+        console.log(cart);
+    }
 
 
 
@@ -239,60 +246,3 @@ item9.addEventListener('click',function(){
     displayQty();
     displayTotal();
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Display Methods
-
-//Eperiment....
-
-// function printThis(){
-//     var output = " ItemID: ";
-//     // for(var x = 0; x < cart.length; x++){
-//     //     output += cart[x].id + " " + cart[x].name;
-    
-//     // }
-//     var ul = document.getElementById("cartList2");
-//     var li = document.createElement('li');
-//     li.appendChild(document.createTextNode(output)); 
-//         ul.appendChild(li);
-// }
-
-
-/*
-var removeButton = document.getElementsByClassName('removeItem');
-for(var x = 0; x < removeButton.length; x++){
-
-    removeButton[x].addEventListener('click',displayItemsRemovalInCart);
-};
-
-
-
-//display remove item from cart
-function displayItemsRemovalInCart(){
-    var ul = document.querySelector("ul");
-    var li = document.getElementsByName('li');
-
-    for(var x = 0; x < li.length; x++){
-    //li[x].remove();
-console.log('test');
-    //   ul.removeChild(li[x]);
-
-    //ul.firstElementChild.remove();
-    };
-//ul.remove();
-    
-}
-*/
-
