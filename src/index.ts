@@ -13,7 +13,7 @@
             var item = new Item(id, name, price, count);
             cart.push(item);
             saveCart();
-            displayInCart(id, name, price, count);
+            displayItemsInCart(id, name, price, count);
             displayTotal();
             displayQty(); 
         }
@@ -204,7 +204,7 @@
     }
 
     //display item in cart
-    function displayInCart(id:number, name:string, price:number, count:number){
+    function displayItemsInCart(id:number, name:string, price:number, count:number){
         var output = " ItemID: " + id +" "+ name + ": $" + Number(price); //+ " total cost $ " + totalCart();
         var ul = document.getElementById("cartList");
         var li = document.createElement('li');
@@ -214,7 +214,7 @@
 
 
 
-    
+
     //Eperiment....
 
     // function printThis(){
