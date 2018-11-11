@@ -47,7 +47,7 @@ displayClearCart();
 
 /****DISPLAYS****/
 
-//Display | Show Cart
+//Display | Show Items in Cart
    function displayItemsInCart(id:number, name:string, price:number,discount:number, count:number):void{
         
     let output = name + "/  Price $" + Number(price);
@@ -71,14 +71,14 @@ displayClearCart();
        
     }
 
-//Total Cost
+//Total Cost Span
 function displayTotal():void{
     var output = " Total Cost of Items in Cart: $ " + totalCart();
     var span = document.getElementById('sp');
     span.innerHTML = output;
     }
 
-//QTY - count
+//QTY - count Span
 function displayQty():void{
 var output = " Total Number of Items In Cart: " + countCart();
 var span = document.getElementById('qt');
@@ -94,15 +94,6 @@ function displayClearCart(){
             content.textContent = '';
         });
 }
-
-/****JQUERY****/
-    //Jquery Clear Cart
-// $("#clear-cart").click(function(event){
-//     clearCart();
-//     var content = document.getElementById('cartList');
-//     content.textContent = '';
-// });
-
 
  //Shopping Cart Functionalities / Logic
     let cart: any[] = [];
@@ -130,7 +121,8 @@ function displayClearCart(){
                 cart[x].count --; 
     
                 if(cart[x].count === 0){ 
-                    removeItemFromCartAll(name);
+                    //removeItemFromCartAll(name);
+                    cart.splice(x,1); 
                 }
             break;
             }
@@ -139,19 +131,6 @@ function displayClearCart(){
         displayTotal();
         displayQty();
     
-    }
-    
-    function removeItemFromCartAll(name: string){
-        for(let x = 0; x < cart.length; x++){
-        if(cart[x].name === name){
-            cart.splice(x,1); 
-            break;
-        }
-    }
-    saveCart();
-    displayTotal();
-    displayQty();
-
     }
     
     function clearCart(){
@@ -192,3 +171,16 @@ function displayClearCart(){
         }
         return cartCopy;
     }
+
+    //Example: If we need to talk about jQuery
+
+    /****JQUERY****/
+    //Jquery Clear Cart
+// $("#clear-cart").click(function(event){
+//     clearCart();
+//     var content = document.getElementById('cartList');
+//     content.textContent = '';
+// });
+
+
+//Notes: Had problems with implementing the search with my TypeScript code!!!!
