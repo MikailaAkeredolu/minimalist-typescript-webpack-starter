@@ -49,25 +49,25 @@ renderProducts();
 
 //Display | Show Cart
    function displayItemsInCart(id:number, name:string, price:number,discount:number, count:number):void{
-        var output = name + "/  Price $" + Number(price);
-        var ul = document.getElementById("cartList");
-        var li = document.createElement('li');
+        let output = name + "/  Price $" + Number(price);
+        let ul = document.getElementById("cartList");
+        let li = document.createElement('li');
         li.innerHTML += "<a><button>Remove</button></a>"
         li.innerHTML += "<br>" 
-        li.addEventListener('click',function(){
-            displayQty();
-            displayTotal();
-          removeItemFromCart(name);
-          var content = document.querySelector('ul > li');
-            content.remove();
-        
-        });
-
         li.appendChild(document.createTextNode(output)); 
         ul.appendChild(li);
         addItemToCart(id, name, price, 0, 1);
         displayQty();
         displayTotal();
+        li.addEventListener('click',function(){
+            displayQty();
+            displayTotal();
+          li.remove();
+         removeItemFromCart(name);
+        
+        });
+
+       
     }
 
 //Total Cost
