@@ -19,7 +19,7 @@ const productList = [
 
 function renderProducts(){
 	productList.forEach(function(value, index, arr){
-		productContainer.appendChild(listItemFactory(value["id"], value["name"], value["price"], value["discount"], value["count"]));
+        productContainer.appendChild(listItemFactory(value["id"], value["name"], value["price"], value["discount"], value["count"]));
 	});
 }
 
@@ -41,15 +41,16 @@ function listItemFactory(id:number, name:string, price:number, discount:number =
 	return li;
 }
 
-
+//Calls
 renderProducts();
-
+displayClearCart();
 
 /****DISPLAYS****/
 
 //Display | Show Cart
    function displayItemsInCart(id:number, name:string, price:number,discount:number, count:number):void{
-        let output = name + "/  Price $" + Number(price);
+        
+    let output = name + "/  Price $" + Number(price);
         let ul = document.getElementById("cartList");
         let li = document.createElement('li');
         li.innerHTML += "<a><button>Remove</button></a>"
@@ -59,12 +60,12 @@ renderProducts();
         addItemToCart(id, name, price, 0, 1);
         displayQty();
         displayTotal();
+
         li.addEventListener('click',function(){
             displayQty();
             displayTotal();
-          li.remove();
          removeItemFromCart(name);
-        
+         li.remove();
         });
 
        
@@ -84,18 +85,26 @@ var span = document.getElementById('qt');
 span.innerHTML = output;
 }
 
-
+//ClearCart Button
+function displayClearCart(){
+    var clearButton = document.getElementById('clear-cart');
+        clearButton.addEventListener('click', function(){
+            clearCart();
+            var content = document.getElementById('cartList');
+            content.textContent = '';
+        });
+}
 
 /****JQUERY****/
     //Jquery Clear Cart
-$("#clear-cart").click(function(event){
-    clearCart();
-    var content = document.getElementById('cartList');
-    content.textContent = '';
-});
+// $("#clear-cart").click(function(event){
+//     clearCart();
+//     var content = document.getElementById('cartList');
+//     content.textContent = '';
+// });
 
 
- //Shopping Cart Functions
+ //Shopping Cart Functionalities / Logic
     let cart: any[] = [];
     function addItemToCart(id: number, name:string, price:number,discount: number, count:number){
         for(let x in cart){
@@ -148,20 +157,16 @@ $("#clear-cart").click(function(event){
     function clearCart(){
         cart = [];
         saveCart();
-        console.log(cart);
         displayTotal();
-        displayQty(); 
+        displayQty();
     }
 
     function countCart():number{
         let totalCount: number = 0;
         for(let x in cart){
             totalCount += cart[x].count; 
-        
         }
-
         return totalCount;
-    
     }
 
 
@@ -175,10 +180,10 @@ $("#clear-cart").click(function(event){
     }
     
     function listCart(){
-        var cartCopy = [];
-        for(var x in cart){
-            var item = cart[x];
-            var itemCopy:any = {};  
+        let cartCopy = [];
+        for(let x in cart){
+            let item = cart[x];
+            let itemCopy:any = {};  
         //itemCopy = {...item};
             for(var p in item){
             itemCopy[p] = item[p];
