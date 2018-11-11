@@ -157,7 +157,7 @@ import $ from 'jquery';
         var name = $(this).attr("data-name");
         var price = Number($(this).attr("data-price"));
         // displayItemsInCart(id, name, price, 0);
-        var output = name + " " + Number(price);
+        var output = name + " Price: $" + Number(price);
         var ul = document.getElementById("cartList");
         var li = document.createElement('li');
         li.appendChild(document.createTextNode(output)); 
