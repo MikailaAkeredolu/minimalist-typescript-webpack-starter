@@ -1,20 +1,105 @@
 import { Item } from './item';
 import $ from 'jquery';
 
-    let cart: any[] = [];
+const productList = [
+	{id: 1, name: "Adidas NMD", price: 130.00, count: 1},
+	{id: 2, name: "Adidas Yeezy Boost 350", price: 300.00, discount: .10, count: 1},
+	{id: 3, name: "Vans Old Skool", price: 60.00, count: 1},
+	{id: 4, name: "Adidas Superstar", price: 80.00, discount: .10, count: 1},
+	{id: 5, name: "Converse Chuck Taylor All Star", price: 50.00, count: 1},
+	{id: 6, name: "Adidas Stan Smith", price: 60.00, count: 1},
+	{id: 7, name: "Nike Air Max 90", price: 110.00, discount: .10, count: 1},
+	{id: 8, name: "Vans Authentic", price: 50.00, count: 1},
+	{id: 9, name: "Adidas Ultra Boost", price: 180.00, discount: .10, count: 1},
+	{id: 10, name: "Vans Authentic", price: 50.00, count: 1}
+]
 
-    function addItemToCart(id: number, name:string, price:number, count:number){
+ const productContainer:HTMLElement = document.getElementById("prodContainer");
+// const searchInput:HTMLInputElement = <HTMLInputElement>document.getElementById("searchInput");
+
+function renderProducts(){
+	productList.forEach(function(value, index, arr){
+		productContainer.appendChild(listItemFactory(value["id"], value["name"], value["price"], value["discount"], value["count"]));
+	});
+}
+
+function listItemFactory(id:number, name:string, price:number, discount:number = 0, count:number = 1){
+	let li:HTMLLIElement = document.createElement("li");
+	li.setAttribute("id", String(id));
+	li.innerHTML  = name + "<br>Price: $" + price.toFixed(2);
+
+	if(discount > 0)
+        li.innerHTML += "<br>Now: $" + (price - (price * discount)).toFixed(2) + " save $" + (price * discount).toFixed(2)
+        li.innerHTML += "<br>Qty: "+ count; 
+        li.innerHTML += "<br>" 
+        li.innerHTML += "<a><button>ADD</button></a>"
+        li.addEventListener('click',function(){
+            displayQty();
+            displayTotal();
+            displayItemsInCart(id, name, price, discount, count);
+        });
+	return li;
+}
+
+
+renderProducts();
+
+
+/****DISPLAYS****/
+
+//Display | Show Cart
+   function displayItemsInCart(id:number, name:string, price:number,discount:number, count:number):void{
+        var output = name + "/  Price $" + Number(price);
+        var ul = document.getElementById("cartList");
+        var li = document.createElement('li');
+        li.appendChild(document.createTextNode(output)); 
+        ul.appendChild(li);
+        addItemToCart(id, name, price, 0, 1);
+        displayQty();
+        displayTotal();
+    }
+
+//Total Cost
+function displayTotal():void{
+    var output = " Total Cost of Items in Cart: $ " + totalCart();
+    var span = document.getElementById('sp');
+    span.innerHTML = output;
+    }
+
+//QTY - count
+function displayQty():void{
+var output = " Total Number of Items In Cart: " + countCart();
+var span = document.getElementById('qt');
+span.innerHTML = output;
+}
+
+
+
+/****JQUERY****/
+    //Jquery Clear Cart
+$("#clear-cart").click(function(event){
+    clearCart();
+    var content = document.getElementById('cartList');
+    content.textContent = '';
+});
+
+
+
+
+
+
+ //Shopping Cart Functions
+    let cart: any[] = [];
+    function addItemToCart(id: number, name:string, price:number,discount: number, count:number){
         for(let x in cart){
             if(cart[x].name === name){ 
                     cart[x].count += count;
                     return;
             }
         }
-    
-        var item = new Item(id, name, price, count);
+        var item = new Item(id, name, price, discount, count);
         cart.push(item);
         saveCart();
-        //displayItemsInCart(id, name, price, count);
         displayTotal();
         displayQty(); 
     }
@@ -35,9 +120,6 @@ import $ from 'jquery';
             }
         }
         saveCart();
-        console.log(cart.length);
-        console.log(cart);
-        //displayItemsRemovalInCart();
         displayTotal();
         displayQty();
     
@@ -51,7 +133,6 @@ import $ from 'jquery';
         }
     }
     saveCart();
-    //displayItemsRemovalInCart();
     displayTotal();
     displayQty();
 
@@ -65,17 +146,6 @@ import $ from 'jquery';
         displayQty(); 
     }
 
-    // function setCountForCart (name: string, count: number) {
-    //     for (var i in cart) {
-    //         if (cart[i].name === name) {
-    //             cart[i].count = count;
-    //             break;
-    //         }
-    //     }
-    //     saveCart();
-    // };
-    
-    
     function countCart():number{
         let totalCount: number = 0;
         for(let x in cart){
@@ -92,157 +162,21 @@ import $ from 'jquery';
         var totalPrice: number = 0.0;
         for(let x in cart){
             totalPrice += (cart[x].price * cart[x].count);
-            //totalPrice += cart[x].price;
         }
         return totalPrice;
     
     }
     
     function listCart(){
-        //create a copy
         var cartCopy = [];
-        //loop through each item in the cart
         for(var x in cart){
             var item = cart[x];
             var itemCopy:any = {};  
         //itemCopy = {...item};
             for(var p in item){
             itemCopy[p] = item[p];
-    
             }
-    
             cartCopy.push(itemCopy);
-            
         }
         return cartCopy;
-
     }
-
-    //REPLACED WITH JQUERY
-    // function displayItemsInCart(id:number, name:string, price:number, count:number){
-    //     var output = name + "/  Price $" + Number(price);
-    //     var ul = document.getElementById("cartList");
-    //     var li = document.createElement('li');
-    //     li.appendChild(document.createTextNode(output)); 
-    //     ul.appendChild(li);
-    // }
-
-    function displayTotal(){
-        var output = " Total Cost of Items in Cart: $ " + totalCart();
-        var span = document.getElementById('sp');
-        span.innerHTML = output;
-        }
-    
-    //QTY - count
-    function displayQty(){
-    var output = " Total Number of Items In Cart: " + countCart();
-    var span = document.getElementById('qt');
-    span.innerHTML = output;
-    }
-
-
-    //Jquery
-    $("#clear-cart").click(function(event){
-        clearCart();
-        var content = document.getElementById('cartList');
-        content.textContent = '';
-        loadCart();
-        //listCart();
-    });
-
-
-    $(".add-to-cart").click(function(event){
-        event.preventDefault();
-        var id = Number($(this).attr("data-id"));
-        var name = $(this).attr("data-name");
-        var price = Number($(this).attr("data-price"));
-        // displayItemsInCart(id, name, price, 0);
-        var output = name + " Price: $" + Number(price);
-        var ul = document.getElementById("cartList");
-        var li = document.createElement('li');
-        li.appendChild(document.createTextNode(output)); 
-        ul.appendChild(li);
-        addItemToCart(id, name, price, 0);
-        displayTotal();
-        displayQty();
-
-    })
-
-    
-    loadCart() //Looks for cart and loads it from local storage//take string and make objects
-    function loadCart(){
-        cart = JSON.parse(localStorage.getItem("shoppingCart")!);
-        console.log(cart);
-    }
-
-
-
-
-    
-//ProductList
-
-var item1:HTMLElement = document.getElementById('item1');
-item1.addEventListener('click',function(){
-    addItemToCart(1,"Adidas NMD",130.00, 1);
-    displayQty();
-    displayTotal();
-});
-
-var item2:HTMLElement = document.getElementById('item2');
-item2.addEventListener('click',function(){
-addItemToCart(2,"Adidas Yeezy Boost 350",300.00, 1);
-displayQty();
-displayTotal();
-});
-
-
-var item3:HTMLElement = document.getElementById('item3');
-item3.addEventListener('click',function(){
-    addItemToCart(3,"Vans Old Skool",60.00, 1);
-    displayQty();
-    displayTotal();
-});
-
-var item4:HTMLElement = document.getElementById('item4');
-item4.addEventListener('click',function(){
-    addItemToCart(4,"Adidas Superstar",80.00, 1);
-    displayQty();
-    displayTotal();
-});
-
-
-var item5:HTMLElement = document.getElementById('item5');
-item5.addEventListener('click',function(){
-    addItemToCart(5,"Converse Chuck Taylor All Star",50.00, 1);
-    displayQty();
-    displayTotal();
-});
-
-var item6:HTMLElement = document.getElementById('item6');
-item6.addEventListener('click',function(){
-addItemToCart(6,"Adidas Stan Smith",60.00, 1);
-displayQty();
-displayTotal();
-});
-
-
-var item7:HTMLElement = document.getElementById('item7');
-item7.addEventListener('click',function(){
-    addItemToCart(7,"Nike Air Max 90",110.00, 1);
-    displayQty();
-    displayTotal();
-});
-
-var item8:HTMLElement = document.getElementById('item8');
-item8.addEventListener('click',function(){
-    addItemToCart(8,"Vans Authentic",50.00, 1);
-    displayQty();
-    displayTotal();
-});
-
-var item9:HTMLElement = document.getElementById('item9');
-item9.addEventListener('click',function(){
-    addItemToCart(9,"Adidas Ultra Boost",180.00, 1);
-    displayQty();
-    displayTotal();
-});
