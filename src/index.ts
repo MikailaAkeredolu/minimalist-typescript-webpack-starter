@@ -95,10 +95,6 @@ $("#clear-cart").click(function(event){
 });
 
 
-
-
-
-
  //Shopping Cart Functions
     let cart: any[] = [];
     function addItemToCart(id: number, name:string, price:number,discount: number, count:number){
