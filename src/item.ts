@@ -1,9 +1,9 @@
 export class Item {
-
+    
     id: number;
     name: string;
     price: number;
-    discount?: number;
+    discount: number;
     count: number
 
     constructor(id: number, name: string, price: number, discount: number, count: number) {

@@ -4,5 +4,6 @@ export interface CartManager {
     countCart(): number,
     totalCart(): number,
     listCart(): any[],
-    clearCart(): void
+    clearCart(): void,
+    saveCart(): void
 }

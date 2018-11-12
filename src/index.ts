@@ -28,12 +28,9 @@ inventory.registerEventListener(function (item: Item) {
 });
 
 const productContainer: HTMLElement = document.getElementById("prodContainer");
-
 inventory.renderProducts(productContainer);
 
 cart.displayClearCart();
-
-
 
 
 

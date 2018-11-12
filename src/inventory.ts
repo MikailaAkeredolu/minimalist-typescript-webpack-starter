@@ -14,12 +14,11 @@ export class Inventory implements InventoryManager {
     }
 
     renderProducts(productContainer: any) {
-        let that = this;
-        this.productList.forEach(function (item: Item) {
+        this.productList.forEach( (item: Item) =>{
             if (item.count === 0) {
                 item.count = 1;
             }
-            productContainer.appendChild(that.listItemFactory(item));
+            productContainer.appendChild(this.listItemFactory(item));
         });
     }
 
@@ -33,9 +32,9 @@ export class Inventory implements InventoryManager {
         }
         li.innerHTML += "<br>"
         li.innerHTML += "<a><button>ADD</button></a>"
-        let that = this;
-        li.addEventListener('click', function () {
-            that.handler(item);
+
+        li.addEventListener('click', ()=> {
+            this.handler(item);
         });
         return li;
     }

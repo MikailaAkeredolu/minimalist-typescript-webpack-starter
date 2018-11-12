@@ -19,16 +19,15 @@ export class Cart implements CartManager {
         this.displayQty();
     }
 
-    saveCart(): void {
+    saveCart():void {
         localStorage.setItem("shoppingCart", JSON.stringify(this.cart));
     }
 
-    removeItemFromCart(name: string) {
+    removeItemFromCart(name: string):void {
         for (let x = 0; x < this.cart.length; x++) {
             if (this.cart[x].name === name) {
                 this.cart[x].count--;
                 if (this.cart[x].count === 0) {
-                    //removeItemFromCartAll(name);
                     this.cart.splice(x, 1);
                 }
                 break;
@@ -39,23 +38,23 @@ export class Cart implements CartManager {
         this.displayQty();
     }
 
-    clearCart() {
+    clearCart():void {
         this.cart = [];
         this.saveCart();
         this.displayTotal();
         this.displayQty();
     }
 
-    countCart(): number {
-        let totalCount: number = 0;
+    countCart():number {
+        let totalCount:number = 0;
         for (let x in this.cart) {
             totalCount += this.cart[x].count;
         }
         return totalCount;
     }
 
-    totalCart(): number {
-        var totalPrice: number = 0.0;
+    totalCart():number {
+        let totalPrice:number = 0.0;
         for (let x in this.cart) {
             totalPrice += (this.cart[x].price * this.cart[x].count);
         }
@@ -68,7 +67,7 @@ export class Cart implements CartManager {
             let item = this.cart[x];
             let itemCopy: any = {};
             //itemCopy = {...item};
-            for (var p in item) {
+            for (let p in item) {
                 itemCopy[p] = item[p];
             }
             cartCopy.push(itemCopy);
@@ -91,11 +90,10 @@ export class Cart implements CartManager {
         this.addItemToCart(id, name, price, 0, 1);
         this.displayQty();
         this.displayTotal();
-        let that = this;
-        li.addEventListener('click', function () {
-            that.displayQty();
-            that.displayTotal();
-            that.removeItemFromCart(name);
+        li.addEventListener('click', ()=> {
+            this.displayQty();
+            this.displayTotal();
+            this.removeItemFromCart(name);
             li.remove();
         });
     }
@@ -115,12 +113,11 @@ export class Cart implements CartManager {
     }
 
     //ClearCart Button
-    displayClearCart() {
+    displayClearCart():void {
         let clearButton = document.getElementById('clear-cart');
-        let that = this;
-        clearButton.addEventListener('click', function () {
-            that.clearCart();
-            var content = document.getElementById('cartList');
+        clearButton.addEventListener('click', ()=> {
+            this.clearCart();
+            let content = document.getElementById('cartList');
             content.textContent = '';
         });
     }
