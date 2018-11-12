@@ -3,7 +3,7 @@ import { Item } from './item';
 import $ from 'jquery';
 import { Cart } from './cart';
 
-import { Inventory } from './Inventory';
+import { Inventory } from './inventory';
 
 const productList: Item[] = [
     new Item(1, "Adidas NMD", 130.00, 0, 1),
@@ -22,7 +22,6 @@ const cart: Cart = new Cart();
 const inventory: Inventory = new Inventory();
 inventory.setModel(productList);
 inventory.registerEventListener(function (item: Item) {
-
     cart.displayQty();
     cart.displayTotal();
     cart.displayItemsInCart(item.id, item.name, item.price, item.discount, item.count);

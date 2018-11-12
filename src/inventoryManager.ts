@@ -1,7 +1,7 @@
 import { Item } from "./item";
 
 export interface InventoryManager {
-    setModel(productList: any[]): void
+    setModel(productList: any[]): void;
 }
 
 //declaring custom type

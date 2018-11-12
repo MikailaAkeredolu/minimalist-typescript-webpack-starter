@@ -2,7 +2,9 @@ import { CartManager } from './cartManager';
 import { Item } from './item';
 
 export class Cart implements CartManager {
+
     cart: any[] = [];
+
     addItemToCart(id: number, name: string, price: number, discount: number, count: number): void {
         for (let x in this.cart) {
             if (this.cart[x].name === name) {

@@ -5,8 +5,8 @@ export class Inventory implements InventoryManager {
     private productList: Item[] = [];
     private handler: InventoryCallback;
 
-    setModel(pList: Item[]) {
-        this.productList = pList;
+    setModel(productList: Item[]) {
+        this.productList = productList;
     }
 
     registerEventListener(handler: InventoryCallback) {
