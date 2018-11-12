@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Live</title>
+    <title>Experiments</title>
     <style type="text/css">
         body {
             background-color: #CDD6D5;
         }
-        li,span{
+
+        li,
+        span {
             background-color: #415B76;
             padding: 5px;
             list-style-type: none;
@@ -17,71 +20,87 @@
             font-family: sans-serif;
             border: 3px solid;
         }
+
         a {
-            color:#c3fa2bd8;
+            color: #c3fa2bd8;
         }
-        h2{
+
+        h2 {
             text-align: center;
             background-color: #415B76;
             padding: 5px;
             color: #EEF4F2;
         }
-        #prodContainer{
+
+        #prodContainer {
             width: 30%;
             float: left;
-        
+
         }
-        .remove{
-            /* margin-left: 40px; */
+
+        .remove {
+            margin-left: 40px;
         }
-        #cart{
+
+        #cart {
             width: 30%;
             float: left;
-           
+
         }
-        #controls{
+
+        #controls {
             width: 30%;
             float: left;
         }
-        div{
+
+        div {
             margin: 5px;
         }
-        button{
+
+        button {
             border: 2px solid green;
             color: green;
-       
+
         }
-        #clear-cart{
+
+        #clear-cart {
             margin-top: 20px;
-            color: red;
         }
     </style>
-    </head>
-    <body>
+</head>
 
-<div>
-    <div id="prodContainer">
-        <h2>Inventory</h2>
-    </div>
+<body>
 
-    <div id="cart">
+    <div>
+        <div>
+            <input id="searchInput" class="form-control form-control-lg form-control-borderless" type="search"
+                placeholder="Search keywords" size="35">
+            <button class="btn btn-sm btn-success" onclick="searchFilter()">Search</button>
+        </div>
+        <div id="prodContainer">
+            <h2>Inventory / Experiments</h2>
+        </div>
+
+        <div id="cart">
             <h2>Items in the cart</h2>
-        <ul id="cartList"></ul>
+            <ul id="cartList"></ul>
+        </div>
+
+        <div id="controls">
+            <h2>Controls</h2>
+            <span id="sp">Total Cost of Items in Cart: $ 0</span>
+            <br>
+            <br>
+            <span id="qt">Total Number of Items In Cart: 0</span>
+
+            <button id="clear-cart">Clear Cart</button>
+        </div>
     </div>
 
-    <div id="controls"> 
-            <h2>Controls</h2>
-        <span id="sp">Total Cost of Items in Cart: $ 0</span>
-        <br>
-        <br>
-        <span id="qt">Total Number of Items In Cart: 0</span>
-    
-        <button id="clear-cart">Clear Cart</button></div>
-    </div> 
-
-</div>
+    </div>
     <script src="http://code.jquery.com/jquery-1.6.4.min.js" type="text/javascript"></script>
 
     <!-- <script type="text/javascript" src="src/index.js"></script> -->
 </body>
+
 </html>
