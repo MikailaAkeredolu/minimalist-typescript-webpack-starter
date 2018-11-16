@@ -19,7 +19,9 @@ const productList: Item[] = [
 ]
 
 const cart: Cart = new Cart();
-const inventory: Inventory = new Inventory();
+const productContainer: HTMLElement = document.getElementById("prodContainer");
+
+const inventory: Inventory = new Inventory(productContainer);
 inventory.setModel(productList);
 inventory.registerEventListener(function (item: Item) {
     cart.displayQty();
@@ -27,12 +29,14 @@ inventory.registerEventListener(function (item: Item) {
     cart.displayItemsInCart(item.id, item.name, item.price, item.discount, item.count);
 });
 
-const productContainer: HTMLElement = document.getElementById("prodContainer");
-inventory.renderProducts(productContainer);
+document.getElementById("searchButton").addEventListener('click', ()=>{
+    const searchInput:HTMLInputElement = <HTMLInputElement>document.getElementById("searchInput");
+    inventory.searchFilter(searchInput.value);
+});
+
+inventory.renderProducts();
 
 cart.displayClearCart();
-
-
 
 
 
